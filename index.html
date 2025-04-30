@@ -39,27 +39,43 @@
                 <div class="content-grid">
                     <div class="content-text">
                         <div class="feature-box large">
-                             <p>Tokenization offers transformative potential for how assets are structured, accessed, and exchanged. But the real challenge isn’t in creating a token—it’s in designing a process where legal, financial, regulatory, and economic elements work in harmony. Without this coherence, tokenization fails to deliver on its promise. Success requires more than technology; it requires institutional-grade structuring.</p>
+                            <p>Tokenization offers transformative potential for how assets are structured, accessed, and exchanged. But the real challenge isn’t in creating a token—it’s in designing a process where legal, financial, regulatory, and economic elements work in harmony. Without this coherence, tokenization fails to deliver on its promise. Success requires more than technology; it requires institutional-grade structuring.</p>
                         </div>
                     </div>
-                    <div class="feature-grid dimensions-grid"> <div class="feature-box">
-                            <h3>Technical Architecture</h3>
+
+                    <div class="content-text centered dimensions-intro">
+                        <p>Mastering the tokenization challenge requires addressing these five interdependent dimensions:</p>
+                    </div>
+
+                    <div class="dimensions-container">
+                        <div class="feature-box dimension-box">
+                            <div class="dimension-header">
+                                <i class="fas fa-sitemap"></i> <h3>Technical Architecture</h3>
+                            </div>
                             <p>Designing robust smart contract infrastructure and secure blockchain solutions tailored to institutional requirements.</p>
                         </div>
-                        <div class="feature-box">
-                            <h3>Market Design</h3>
+                        <div class="feature-box dimension-box">
+                            <div class="dimension-header">
+                                <i class="fas fa-drafting-compass"></i> <h3>Market Design</h3>
+                            </div>
                             <p>Developing sophisticated tokenization strategies and market mechanism designs for emerging digital asset ecosystems.</p>
                         </div>
-                        <div class="feature-box">
-                            <h3>Risk Management</h3>
+                        <div class="feature-box dimension-box">
+                            <div class="dimension-header">
+                                <i class="fas fa-shield-alt"></i> <h3>Risk Management</h3>
+                            </div>
                             <p>Establishing comprehensive risk frameworks that address the unique challenges of blockchain and decentralized technologies.</p>
                         </div>
-                        <div class="feature-box">
-                            <h3>Ecosystem Integration</h3>
+                        <div class="feature-box dimension-box">
+                            <div class="dimension-header">
+                                <i class="fas fa-link"></i> <h3>Ecosystem Integration</h3>
+                            </div>
                             <p>Bridging traditional financial infrastructure with cutting-edge blockchain technologies seamlessly and strategically.</p>
                         </div>
-                         <div class="feature-box">
-                            <h3>Legal/Regulatory Compliance</h3>
+                        <div class="feature-box dimension-box">
+                            <div class="dimension-header">
+                                <i class="fas fa-balance-scale"></i> <h3>Legal/Regulatory Compliance</h3>
+                            </div>
                             <p>Navigating the complex legal and regulatory landscape to ensure compliant and sustainable tokenization solutions.</p>
                         </div>
                     </div>
@@ -155,10 +171,9 @@
 
         <section id="contact" class="section">
             <div class="container">
-                <h2>Risk-Managed Innovation Starts Here</h2>
+                <h2>Partner with us to navigate the blockchain landscape.</h2>
                 <div class="content-grid">
                     <div class="content-text centered">
-                        <p class="contact-blurb">Partner with us to navigate the blockchain landscape with confidence and strategic precision, transforming market opportunities into institutional-grade solutions.</p>
                         <div class="contact-buttons">
                             <a href="mailto:contact@20squares.org" class="cta-button primary">
                                 <i class="fas fa-envelope"></i>
@@ -185,6 +200,32 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+     // --- Observer 1: For Dimension Boxes ---
+     const dimensionsContainer = document.querySelector('.dimensions-container');
+     const dimensionBoxes = document.querySelectorAll('.dimension-box');
+
+     if (dimensionsContainer && dimensionBoxes.length > 0) {
+         const revealDimensionElements = (elements) => {
+             elements.forEach(el => {
+                 el.classList.add('is-visible');
+             });
+         };
+
+         const dimensionObserver = new IntersectionObserver((entries) => {
+             entries.forEach(entry => {
+                 if (entry.isIntersecting) {
+                     revealDimensionElements(dimensionBoxes);
+                     dimensionObserver.unobserve(dimensionsContainer); // Stop observing
+                 }
+             });
+         }, { threshold: 0.1 });
+
+         dimensionObserver.observe(dimensionsContainer);
+     } else {
+         console.log('Dimension elements not found for animation.');
+     }
+
+     // --- Observer 2: For Process Journey ---
     const journeySection = document.querySelector('#support');
     const steps = document.querySelectorAll('.process-journey .process-step');
     const connectors = document.querySelectorAll('.process-journey .process-connector');

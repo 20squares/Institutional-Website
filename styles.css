@@ -594,6 +594,66 @@ li::before {
     text-decoration: underline;
 }
 
+.dimensions-intro p {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    color: var(--secondary-color);
+}
+
+.dimensions-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    /* Optional: Subtle grouping style */
+    /* padding: 2rem; */
+    /* border: 1px solid var(--light-bg); */
+    /* border-radius: 8px; */
+}
+
+.dimension-box {
+    flex: 1 1 280px;
+    max-width: 350px;
+    text-align: left;
+
+    /* Animation initial state: Fade only */
+    opacity: 0;
+    transform: translateY(0); /* No slide */
+    transition: opacity 0.7s ease-out; /* Only transition opacity */
+    /* Apply a slight delay for all boxes simultaneously */
+    transition-delay: 0.2s;
+}
+
+/* Animation visible state */
+.dimension-box.is-visible {
+    opacity: 1;
+}
+
+/* Styling for dimension icons */
+.dimension-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem; /* Space between icon and title */
+    margin-bottom: 1rem; /* Space below header */
+}
+
+.dimension-header i {
+    font-size: 1.6rem; /* Icon size */
+    color: var(--accent-color); /* Icon color */
+    width: 2rem; /* Fixed width for alignment */
+    text-align: center;
+}
+
+.dimension-header h3 {
+    margin-bottom: 0; /* Remove default margin from h3 */
+    padding-bottom: 0; /* Remove default padding */
+}
+.dimension-header h3::after {
+     display: none; /* Remove underline from h3 in dimension boxes */
+}
+
 
 /* Responsive Design */
 @media (max-width: 992px) {
