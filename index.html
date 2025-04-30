@@ -182,5 +182,55 @@
             <p><a href="impressum.html">Impressum</a></p>
         </div>
     </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const journeySection = document.querySelector('#support');
+    const steps = document.querySelectorAll('.process-journey .process-step');
+    const connectors = document.querySelectorAll('.process-journey .process-connector');
+
+    if (!journeySection || steps.length === 0) {
+        return; // Exit if elements aren't found
+    }
+
+    // Function to add visibility class with delay
+    const revealElement = (element, delay) => {
+        setTimeout(() => {
+            if (element) { // Check if element exists before adding class
+              element.classList.add('is-visible');
+            }
+        }, delay);
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Reveal the first step immediately
+                revealElement(steps[0], 0);
+
+                // Loop through connectors and subsequent steps
+                connectors.forEach((connector, index) => {
+                    // Calculate base delay for the pair (connector + next step)
+                    // Start delay after the first step has appeared (e.g., 300ms base increment per pair)
+                    const baseDelay = (index * 1200) + 800; // Start delays slightly later, slightly more spacing
+
+                    // Reveal connector first
+                    revealElement(connector, baseDelay);
+
+                    // Reveal the step *after* this connector
+                    const nextStep = steps[index + 1];
+                    revealElement(nextStep, baseDelay + 400); // Step appears 200ms after connector starts appearing
+                });
+
+                observer.unobserve(journeySection); // Stop observing once triggered
+            }
+        });
+    }, {
+        threshold: 0.5 // Trigger when 50% visible
+    });
+
+    observer.observe(journeySection);
+});
+</script>
 </body>
 </html>
